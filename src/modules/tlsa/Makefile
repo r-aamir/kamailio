@@ -58,7 +58,8 @@ endif # ifneq ($(LIBSSL_STATIC_SRCLIB),yes)
 else # ifneq ($(SSL_BUILDER),)
 
 	DEFS += -I$(LOCALBASE)/ssl/include
-	LIBS += -L$(LOCALBASE)/lib -L$(LOCALBASE)/ssl/lib \
+	DEFS += -I$(LOCALBASE)/opt/openssl/include
+	LIBS += -L$(LOCALBASE)/lib -L$(LOCALBASE)/ssl/lib -L$(LOCALBASE)/opt/openssl/lib \
 			-L$(LOCALBASE)/lib64 -L$(LOCALBASE)/ssl/lib64 \
 			-l:libssl.a -l:libcrypto.a -l:libz.a -ldl
 endif # ifneq ($(SSL_BUILDER),)

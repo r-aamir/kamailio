@@ -28,7 +28,8 @@ ifneq ($(SSL_BUILDER),)
 	LIBS += $(shell $(SSL_BUILDER) --libs)
 else
 	DEFS += -I$(LOCALBASE)/ssl/include
-	LIBS += -L$(LOCALBASE)/lib -L$(LOCALBASE)/ssl/lib \
+	DEFS += -I$(LOCALBASE)/opt/openssl/include
+	LIBS += -L$(LOCALBASE)/lib -L$(LOCALBASE)/ssl/lib -L$(LOCALBASE)/opt/openssl/lib \
 			-L$(LOCALBASE)/lib64 -L$(LOCALBASE)/ssl/lib64 \
 			-lssl -lcrypto
 	# NOTE: depending on the way in which libssl was compiled you might
