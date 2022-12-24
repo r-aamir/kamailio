@@ -10,14 +10,13 @@ NAME=db_mysql.so
 # CROSS_COMPILE=true
 
 ifeq ($(CROSS_COMPILE),)
-MYSQLCFG=$(shell which mysql_config)
-ifeq ($(MYSQLCFG),)
-MYSQLCFG=$(shell which mysql_config5)
-endif
-# If no Mysql - do we have MariaDB?
-ifeq ($(MYSQLCFG),)
-MYSQLCFG=$(shell which mariadb_config)
-endif
+	MYSQLCFG=$(shell which mariadb_config)
+	ifeq ($(MYSQLCFG),)
+		MYSQLCFG=$(shell which mysql_config)
+		ifeq ($(MYSQLCFG),)
+			MYSQLCFG=$(shell which mysql_config5)
+		endif
+	endif
 endif
 
 ifneq ($(MYSQLCFG),)
